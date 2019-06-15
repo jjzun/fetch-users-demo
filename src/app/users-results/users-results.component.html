@@ -1,0 +1,7 @@
+<h3>This is the Response of the API</h3>
+
+<div *ngFor='let user of users'>
+  <img [src]="user.picture.medium">
+  <h2>{{ user.name.first | uppercase }}</h2>
+  <p>{{ user.email }}</p>
+</div>
