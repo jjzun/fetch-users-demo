@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+// variables
+$white: #ffffff;
+$black: #000000;
+
+.section {
+    padding: 20px 0;
+}
+
+.img-user-icon {
+    border-radius: 50px;
+    border: 1px solid white;
+}

@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConfigService {
   constructor(private http: HttpClient) { }
-  url: string = 'https://randomuser.me/api/?results=5';
+  url: string = 'https://randomuser.me/api/?results=20';
 
   getUsers(){
     return this.http.get(this.url);

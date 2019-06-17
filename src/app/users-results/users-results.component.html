@@ -1,7 +1,55 @@
-<h3>This is the Response of the API</h3>
+<div class="row section">
+    <div class="col-md">
+      <h3>List of Users</h3>
 
-<div *ngFor='let user of users'>
-  <img [src]="user.picture.medium">
-  <h2>{{ user.name.first | uppercase }}</h2>
-  <p>{{ user.email }}</p>
+      <div class="row">
+          <div class="input-group mb-3 col-sm">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Filter</button>
+              </div>
+              <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
+      </div>
+
+      <div class="row">
+              <div *ngFor="let user of users | filter : searchText" class="col-md-6 col-lg-4">
+                  
+                <div class="user">
+                    <img [src]="user.picture.medium" class="user__picture img-user-icon">
+                    <div class="user__details">
+                        <h2>{{ user.name.first | titlecase}} {{ user.name.last | titlecase}}</h2>
+                        <p>{{ user.email }}</p>
+                    </div>
+                    
+                </div>
+
+                
+              </div>
+      </div>
+        
+        
+        
+        
+        
+      <div class="selected-user">
+
+        <h3>This is the user you've selected:
+
+          <p>Image</p>
+          <p>Name</p>
+          <p>Email</p>
+          <p>Phone</p>
+          <p>Location</p>
+
+
+
+        </h3>
+      </div>
+        
+        
+    </div>
+    
+    
+    
 </div>
+
