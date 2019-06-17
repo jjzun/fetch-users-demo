@@ -12,9 +12,9 @@
       </div>
 
       <div class="row">
-              <div *ngFor="let user of users | filter : searchText" class="col-md-6 col-lg-4">
+              <div *ngFor="let user of users | filter : searchText; let i = index" class="col-md-6 col-lg-4">
                   
-                <div class="user">
+                <div class="user" (click)="selectUser($event, i)">
                     <img [src]="user.picture.medium" class="user__picture img-user-icon">
                     <div class="user__details">
                         <h2>{{ user.name.first | titlecase}} {{ user.name.last | titlecase}}</h2>
@@ -36,7 +36,10 @@
         <h3>This is the user you've selected:
 
           <p>Image</p>
-          <p>Name</p>
+          <!-- <h2>{{ selected.name.first | titlecase}} {{ selected.name.last | titlecase}}</h2>
+          <p>{{ selected.email }}</p> -->
+          <p>{{ selectedUser.name.first | titlecase}} {{ selectedUser.name.last | titlecase}}</p>
+          <p>{{ selectedUser.email}}</p>
           <p>Email</p>
           <p>Phone</p>
           <p>Location</p>

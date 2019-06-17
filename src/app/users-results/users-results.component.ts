@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ConfigService } from '../config.service';
+
+export interface IUser {
+  name: {
+    first: string;
+    last: string;
+  }
+  email: string;
+}
+
 
 @Component({
   selector: 'app-users-results',
@@ -9,7 +18,8 @@ import { ConfigService } from '../config.service';
 export class UsersResultsComponent implements OnInit {
 
   
-  users: any[] = [];
+  users: {};
+  selectedUser: {};
 
   // https://codeburst.io/create-a-search-pipe-to-dynamically-filter-results-with-angular-4-21fd3a5bec5c
 
@@ -28,6 +38,10 @@ export class UsersResultsComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  selectUser(event: any, item: number) {
+    this.selectedUser = this.users[item];
   }
 
 }
