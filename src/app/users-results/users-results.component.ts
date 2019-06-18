@@ -17,7 +17,7 @@ export interface IUser {
 })
 export class UsersResultsComponent implements OnInit {
 
-  
+  modalUserDetails : boolean = false;
   users: {};
   selectedUser: {};
 
@@ -42,6 +42,11 @@ export class UsersResultsComponent implements OnInit {
 
   selectUser(event: any, item: number) {
     this.selectedUser = this.users[item];
+    this.modalUserDetails = true;
+  }
+
+  closeDialog() {
+    this.modalUserDetails = false;
   }
 
 }

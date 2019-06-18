@@ -1,58 +1,59 @@
 <div class="row section">
-    <div class="col-md">
-      <h3>List of Users</h3>
+  <div class="col-md">
+    <h3>List of Users</h3>
 
-      <div class="row">
-          <div class="input-group mb-3 col-sm">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Filter</button>
-              </div>
-              <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText" aria-label="Example text with button addon" aria-describedby="button-addon1">
-          </div>
+    <div class="row">
+      <div class="input-group mb-3 col-sm">
+
+        <input type="text" class="form-control" placeholder="Type to look up for a user" [(ngModel)]="searchText"
+          aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1">Filter</button>
+        </div>
       </div>
-
-      <div class="row">
-              <div *ngFor="let user of users | filter : searchText; let i = index" class="col-md-6 col-lg-4">
-                  
-                <div class="user" (click)="selectUser($event, i)">
-                    <img [src]="user.picture.medium" class="user__picture img-user-icon">
-                    <div class="user__details">
-                        <h2>{{ user.name.first | titlecase}} {{ user.name.last | titlecase}}</h2>
-                        <p>{{ user.email }}</p>
-                    </div>
-                    
-                </div>
-
-                
-              </div>
-      </div>
-        
-        
-        
-        
-        
-      <div class="selected-user">
-
-        <h3>This is the user you've selected:
-
-          <p>Image</p>
-          <!-- <h2>{{ selected.name.first | titlecase}} {{ selected.name.last | titlecase}}</h2>
-          <p>{{ selected.email }}</p> -->
-          <p>{{ selectedUser.name.first | titlecase}} {{ selectedUser.name.last | titlecase}}</p>
-          <p>{{ selectedUser.email}}</p>
-          <p>Email</p>
-          <p>Phone</p>
-          <p>Location</p>
-
-
-
-        </h3>
-      </div>
-        
-        
     </div>
-    
-    
-    
-</div>
 
+    <div class="row">
+      <div *ngFor="let user of users | filter : searchText; let i = index" class="col-md-6 col-lg-4">
+
+        <div class="user" (click)="selectUser($event, i)">
+          <img [src]="user.picture.medium" class="user__picture img-user-icon">
+          <div class="user__details">
+            <h2>{{ user.name.first | titlecase}} {{ user.name.last | titlecase}}</h2>
+            <p>{{ user.email }}</p>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true" [ngClass]="{'show': modalUserDetails}">
+      <div class="modal-dialog" role="document" [ngClass]="{'show': modalUserDetails}">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="nav flex-sm-column flex-row">
+              
+              <h3>This is the user you've selected:</h3>
+              <img [src]="selectedUser.picture.large" class="user__picture img-user-icon inside-details">
+              <h3>{{ selectedUser.name.first | titlecase}} {{ selectedUser.name.last | titlecase}}</h3>
+              <p><strong>Email: </strong>{{ selectedUser.email}}</p>
+              <p><strong>Phone: </strong>{{ selectedUser.phone}}</p>
+              <p><strong>Cell: </strong>{{ selectedUser.cell}}</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</div>

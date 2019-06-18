@@ -1,12 +1,22 @@
 // variables
 $white: #ffffff;
 $black: #000000;
+$mint-green: #058C86;
+$sand-gray: #DDDDDD;
 
 .section {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 .img-user-icon {
-    border-radius: 50px;
-    border: 1px solid white;
+  border-radius: 50px;
+  border: 1px solid $white;
+
+  &.inside-details {
+      border-radius: 100%;
+      width: 230px;
+      border: none;
+      padding-bottom: 33px;
+  }
 }
+

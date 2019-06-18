@@ -1,8 +1,18 @@
+@import '../../styles.scss';
+
 .user {
     display: flex;
     align-items: center;
     padding: 10px 0;
     cursor: pointer;
+
+    &:hover {
+        >* {
+            color: $mint-green;
+            transition:all 0.3s ease;
+
+        }
+    }
 
     &__details {
         margin-left: 15px;
@@ -11,3 +21,55 @@
         }
     }
 }
+
+.modal {
+    &.show  {
+        display: block;
+    }
+    
+    &.left {
+      .modal-dialog {
+        position: fixed;
+        margin: auto;
+        width: 320px;
+        height: 100%;
+        -webkit-transform: translate3d(0%, 0, 0);
+        -ms-transform: translate3d(0%, 0, 0);
+        -o-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+        left: -320px;
+        -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+        transition: opacity 0.3s linear, left 0.3s ease-out;
+
+        &.show {
+        left: 0;
+        }
+      }
+  
+      .modal-content {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .modal-body {
+        padding: 15px 15px 80px;
+      }
+  
+    }
+  }
+  
+  /* ----- MODAL STYLE ----- */
+  .modal-content {
+    border-radius: 0;
+    border: none;
+    background: $sand-gray;
+
+  }
+  
+  .modal-header {
+    border-bottom-color: #eeeeee;
+    background-color: #fafafa;
+  }
+  
