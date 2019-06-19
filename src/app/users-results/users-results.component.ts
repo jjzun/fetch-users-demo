@@ -7,6 +7,8 @@ export interface IUser {
     last: string;
   };
   email: string;
+  phone: string;
+  cell: string;
   picture: {
     large: string;
     medium: string;
@@ -25,6 +27,7 @@ export class UsersResultsComponent implements OnInit {
   modalUserDetails : boolean = false;
   users: IUser;
   selectedUser: IUser;
+  searchText = '';
 
   // https://codeburst.io/create-a-search-pipe-to-dynamically-filter-results-with-angular-4-21fd3a5bec5c
 
