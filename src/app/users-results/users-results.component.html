@@ -17,10 +17,10 @@
       <div *ngFor="let user of users | filter : searchText; let i = index" class="col-md-6 col-lg-4">
 
         <div class="user" (click)="selectUser($event, i)">
-          <img [src]="user.picture.medium" class="user__picture img-user-icon">
+        <img [src]="user?.picture.medium" class="user__picture img-user-icon">
           <div class="user__details">
-            <h2>{{ user.name.first | titlecase}} {{ user.name.last | titlecase}}</h2>
-            <p>{{ user.email }}</p>
+            <h2>{{ user?.name.first | titlecase}} {{ user?.name.last | titlecase}}</h2>
+            <p>{{ user?.email }}</p>
           </div>
 
         </div>
@@ -37,11 +37,11 @@
             <div class="nav flex-sm-column flex-row">
               
               <h3>This is the user you've selected:</h3>
-              <img [src]="selectedUser.picture.large" class="user__picture img-user-icon inside-details">
-              <h3>{{ selectedUser.name.first | titlecase}} {{ selectedUser.name.last | titlecase}}</h3>
-              <p><strong>Email: </strong>{{ selectedUser.email}}</p>
-              <p><strong>Phone: </strong>{{ selectedUser.phone}}</p>
-              <p><strong>Cell: </strong>{{ selectedUser.cell}}</p>
+              <img [src]="selectedUser?.picture.large" class="user__picture img-user-icon inside-details">
+              <h3>{{ selectedUser?.name.first | titlecase}} {{ selectedUser?.name.last | titlecase}}</h3>
+              <p><strong>Email: </strong>{{ selectedUser?.email}}</p>
+              <p><strong>Phone: </strong>{{ selectedUser?.phone}}</p>
+              <p><strong>Cell: </strong>{{ selectedUser?.cell}}</p>
             </div>
           </div>
           <div class="modal-footer">

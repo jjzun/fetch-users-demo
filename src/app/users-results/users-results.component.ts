@@ -5,8 +5,13 @@ export interface IUser {
   name: {
     first: string;
     last: string;
-  }
+  };
   email: string;
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  }
 }
 
 
@@ -18,8 +23,8 @@ export interface IUser {
 export class UsersResultsComponent implements OnInit {
 
   modalUserDetails : boolean = false;
-  users: {};
-  selectedUser: {};
+  users: IUser;
+  selectedUser: IUser;
 
   // https://codeburst.io/create-a-search-pipe-to-dynamically-filter-results-with-angular-4-21fd3a5bec5c
 
