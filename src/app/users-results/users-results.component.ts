@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { Subscription } from 'rxjs';
 import { IUser } from '../user.interface';
@@ -8,7 +8,7 @@ import { IUser } from '../user.interface';
   templateUrl: './users-results.component.html',
   styleUrls: ['./users-results.component.scss']
 })
-export class UsersResultsComponent implements OnInit, OnChanges {
+export class UsersResultsComponent implements OnInit {
 
   modalUserDetails : boolean = false;
   filtering: boolean = false;
@@ -44,14 +44,6 @@ export class UsersResultsComponent implements OnInit, OnChanges {
   filterUsers() {
     this.filteredUsers = this.allUsers.filter(user => user.nameFirst.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1 || user.nameLast.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
     this.filtering = true;
-  }
-
-  ngOnChanges() {
-    // this.filteredUsers = this.allUsers.filter(user => user.nameFirst.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
-
-    //this.filteredUsers = this.allUsers.filter(user => user.includes(this.searchText.toLowerCase()));
-    //pipe(filter(s => s.includes(this.searchText));
-
   }
 
   selectUser(event: any, item: number) {

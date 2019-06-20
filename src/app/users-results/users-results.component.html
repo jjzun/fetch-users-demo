@@ -36,7 +36,7 @@
         <p><strong>Number of users: </strong>{{filteredUsers?.length}} </p>
       </div>
       <div class="row">
-        <div *ngFor="let user of filteredUsers | filter : searchText; let i = index" class="col-md-6 col-lg-4">
+        <div *ngFor="let user of filteredUsers; let i = index" class="col-md-6 col-lg-4">
           <div class="user" (click)="selectUser($event, i)">
             <img [src]="user?.picMedium" class="user__picture img-user-icon">
             <div class="user__details">
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-
+<!-- Selected User Sidebar -->
 <div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true" [ngClass]="{'show': modalUserDetails}">
   <div class="modal-dialog" role="document" [ngClass]="{'show': modalUserDetails}">
