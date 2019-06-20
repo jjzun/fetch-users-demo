@@ -1,60 +1,85 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ConfigService } from '../config.service';
-
-export interface IUser {
-  name: {
-    first: string;
-    last: string;
-  };
-  email: string;
-  phone: string;
-  cell: string;
-  picture: {
-    large: string;
-    medium: string;
-    thumbnail: string;
-  }
-}
-
+import { Subscription } from 'rxjs';
+import { IUser } from '../user.interface';
 
 @Component({
   selector: 'app-users-results',
   templateUrl: './users-results.component.html',
   styleUrls: ['./users-results.component.scss']
 })
-export class UsersResultsComponent implements OnInit {
+export class UsersResultsComponent implements OnInit, OnChanges {
 
   modalUserDetails : boolean = false;
-  users: IUser;
-  selectedUser: IUser;
+  filtering: boolean = false;
   searchText = '';
+  allUsers: IUser[];
+  filteredUsers: IUser[];
+  selectedUsers: IUser[];
+  subscription: Subscription;
 
-  // https://codeburst.io/create-a-search-pipe-to-dynamically-filter-results-with-angular-4-21fd3a5bec5c
+  selectedfirstName: string;
+  selectedLastName: string;
+  selectedEmail: string;
+  selectedPhone: string;
+  selectedCell: string;
+  selectedPic: string;
 
   constructor( protected configService : ConfigService) { 
-    
-
   }
 
   ngOnInit() {
-    this.configService.getUsers()
-    .subscribe(
-      (data) => { // Success
-        this.users = data['results'];
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.subscription = this.configService.getUsers().subscribe(
+      //   (data) => { // Success
+      //     this.allUsers = data['results'];
+      //   },
+      //   (error) => {
+      //     console.error(error);
+      //   }
+      // );
+     users => this.allUsers = users);
+
+  }
+
+  filterUsers() {
+    this.filteredUsers = this.allUsers.filter(user => user.nameFirst.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1 || user.nameLast.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
+    this.filtering = true;
+  }
+
+  ngOnChanges() {
+    // this.filteredUsers = this.allUsers.filter(user => user.nameFirst.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
+
+    //this.filteredUsers = this.allUsers.filter(user => user.includes(this.searchText.toLowerCase()));
+    //pipe(filter(s => s.includes(this.searchText));
+
   }
 
   selectUser(event: any, item: number) {
-    this.selectedUser = this.users[item];
+    
+    if(this.filtering) {
+      this.selectedUsers = [...this.filteredUsers];
+    } else {
+      this.selectedUsers = [...this.allUsers];
+    }
+
+    this.selectedfirstName = this.selectedUsers[item].nameFirst;
+    this.selectedLastName = this.selectedUsers[item].nameLast;
+    this.selectedEmail = this.selectedUsers[item].email;
+    this.selectedPhone = this.selectedUsers[item].phone;
+    this.selectedCell = this.selectedUsers[item].cell;
+    this.selectedPic = this.selectedUsers[item].picLarge;
+
     this.modalUserDetails = true;
   }
 
   closeDialog() {
     this.modalUserDetails = false;
   }
+
+  ngOnDestroy() {
+    this.subscription && this.subscription.unsubscribe();
+  }
+
+  
 
 }
